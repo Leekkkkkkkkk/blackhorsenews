@@ -1,24 +1,20 @@
-# toutiao_m
+# 黑马头条
 
-## Project setup
-```
-npm install
-```
+## 项目介绍
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+一个移动端头条新闻产品
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 所用技术栈
 
-### Lints and fixes files
-```
-npm run lint
-```
+Vue
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Vue-router
+
+Vuex
+
+axios
+
+vant
+
+
+
