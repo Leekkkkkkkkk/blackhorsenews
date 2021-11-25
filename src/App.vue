@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <i class="toutiao toutiao-dianzan"></i>
-    <van-button type="primary">主要按钮</van-button>
-    <p></p>
+  <div class="app">
+    app
   </div>
 </template>
 
@@ -25,9 +23,5 @@ export default {
 </script>
 
 <style scoped lang='less'>
-p{
-  width: 550px;
-  height: 1rem;
-  background-color: skyblue;
-}
+
 </style>
