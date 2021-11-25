@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const requset = axios.create({
-  baseURL: 'http://ttapi.research.itcast.cn',
+  baseURL: 'http://toutiao-app.itheima.net',
   timeout: 3000
 })
 
