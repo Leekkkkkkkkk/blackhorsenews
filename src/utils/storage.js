@@ -7,7 +7,7 @@
 export function getStorage (key) {
   const data = localStorage.getItem(key)
   try {
-    JSON.parse(data)
+    return JSON.parse(data)
   } catch (e) {
     // 进入到catch里面了肯定普通字符串
     return data
@@ -31,5 +31,5 @@ export function setStorage (key, value) {
  * @param {*} key 要删除的名字
  */
 export function removeStorage (key) {
-  localStorage.removeStorage(key)
+  localStorage.removeItem(key)
 }

@@ -1,11 +1,11 @@
-import requset from '@/utils/requset'
+import request from '@/utils/requset'
 /**
  *获取验证码
  * @param {*} mobile 手机号
  * @returns promise
  */
 export function getCode (mobile) {
-  return requset({
+  return request({
     url: '/v1_0/sms/codes/' + mobile
   })
 }
@@ -15,9 +15,14 @@ export function getCode (mobile) {
  * @returns promise
  */
 export function login (data) {
-  return requset({
+  return request({
     url: '/v1_0/authorizations',
     method: 'POST',
     data
+  })
+}
+export function getUserSelfInfo () {
+  return request({
+    url: '/v1_0/user'
   })
 }

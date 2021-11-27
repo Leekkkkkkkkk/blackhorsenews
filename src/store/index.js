@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getStorage, setStorage } from '@/utils/storage'
+import { getStorage, setStorage, removeStorage } from '@/utils/storage'
 
 Vue.use(Vuex)
 
@@ -12,6 +12,10 @@ export default new Vuex.Store({
     initunser (state, payload) {
       state.user = payload
       setStorage('tt-user', JSON.stringify(payload))
+    },
+    removeStorage (state) {
+      state.user = null
+      removeStorage('tt-user')
     }
   },
   actions: {

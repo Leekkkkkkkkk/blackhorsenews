@@ -1,8 +1,15 @@
 import axios from 'axios'
+import { getStorage } from '@/utils/storage.js'
 
-const requset = axios.create({
+const request = axios.create({
   baseURL: 'http://toutiao-app.itheima.net',
   timeout: 3000
 })
 
-export default requset
+request.interceptors.request.use((config) => {
+  if (getStorage('tt-user')) {
+    config.headers.Authorization = 'Bearer ' + getStorage('tt-user').token
+  }
+  return config
+})
+export default request
