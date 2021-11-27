@@ -26,3 +26,10 @@ export function setStorage (key, value) {
   }
   localStorage.setItem(key, value)
 }
+/**
+ *
+ * @param {*} key 要删除的名字
+ */
+export function removeStorage (key) {
+  localStorage.removeItem(key)
+}
