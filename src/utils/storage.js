@@ -31,5 +31,5 @@ export function setStorage (key, value) {
  * @param {*} key 要删除的名字
  */
 export function removeStorage (key) {
-  localStorage.removeItem(key)
+  localStorage.removeStorage(key)
 }
