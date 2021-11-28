@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getStorage } from '@/utils/storage.js'
+import store from '@/store'
 
 const request = axios.create({
   baseURL: 'http://toutiao-app.itheima.net',
@@ -8,7 +9,7 @@ const request = axios.create({
 
 request.interceptors.request.use((config) => {
   if (getStorage('tt-user')) {
-    config.headers.Authorization = 'Bearer ' + getStorage('tt-user').token
+    config.headers.Authorization = 'Bearer ' + store.state.user.token
   }
   return config
 })
