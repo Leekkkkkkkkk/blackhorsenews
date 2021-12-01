@@ -70,7 +70,7 @@ export default {
     async onSubmit () {
       try {
         const res = await login(this.form)
-        this.$store.commit('initunser', res.data.data)
+        this.$store.commit('initunser', res)
         this.$router.push('/profile')
       } catch (error) {
         Toast.fail('登录失败')

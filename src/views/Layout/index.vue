@@ -22,7 +22,7 @@
         </template>
       </van-tabbar-item>
       <van-tabbar-item to="/profile">
-        {{$store.state.user ? '已登录' : '未登录'}}
+        {{$store.state.user ? '我的' : '未登录'}}
         <template #icon>
           <i class="toutiao toutiao-wode"></i>
         </template>
@@ -52,6 +52,7 @@ export default {
 
 <style scoped lang='less'>
 .layout{
+  margin-bottom: 98px;
   .toutiao{
     font-size: 40px;
   }

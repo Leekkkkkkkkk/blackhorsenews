@@ -91,7 +91,7 @@ export default {
     async loginUserSelfInfo () {
       try {
         const res = await getUserSelfInfo()
-        this.userInfo = res.data.data
+        this.userInfo = res
       } catch (error) {
         Toast.fail('获取用户信息失败')
       }

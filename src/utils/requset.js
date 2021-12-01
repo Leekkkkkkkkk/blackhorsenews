@@ -13,4 +13,7 @@ request.interceptors.request.use((config) => {
   }
   return config
 })
+request.interceptors.response.use((res) => {
+  return res.data.data
+})
 export default request
