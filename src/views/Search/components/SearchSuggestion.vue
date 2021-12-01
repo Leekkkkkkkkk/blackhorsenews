@@ -1,8 +1,8 @@
 <template>
   <div class="serachHistory">
-    <van-cell :title="item"  icon="search" v-for="item in suggestions"  :key="item">
+    <van-cell :title="item" @click="onSearch(item)"  icon="search" v-for="item in suggestions"  :key="item">
       <template #title>
-        <div v-html="item"></div>
+        <div v-html="HighText(item)"></div>
       </template>
     </van-cell>
   </div>
@@ -44,7 +44,15 @@ export default {
   },
 
   methods: {
-
+    HighText (ite) {
+      const itext = '<span style="color:red">' + this.value + '</span>'
+      const reg = new RegExp(this.value, 'gi')
+      return ite.replace(reg, itext)
+    },
+    onSearch (ite) {
+      console.log(ite)
+      this.$emit('onSearch', ite)
+    }
   }
 }
 </script>

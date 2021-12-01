@@ -12,7 +12,7 @@
       />
       <search-results v-if="isShowRes"/>
       <search-history  v-else-if="!value" />
-      <search-suggestion v-else :value='value' />
+      <search-suggestion v-else :value='value' @onSearch='onSearch' />
 
     </form>
   </div>
@@ -39,6 +39,7 @@ export default {
 
   methods: {
     onSearch (val) {
+      this.value = val
       this.isShowRes = true
     },
     onCancel () {
@@ -49,5 +50,4 @@ export default {
 </script>
 
 <style scoped lang='less'>
-
 </style>
