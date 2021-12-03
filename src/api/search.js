@@ -13,3 +13,15 @@ export function getSearchSuggestion (q) {
     }
   })
 }
+/**
+ *搜索的数据
+ * @param {*} params {page,per_page,q}
+ *
+ */
+export function getSearchResults (params) {
+  return request({
+    url: '/v1_0/search',
+    method: 'GET',
+    params
+  })
+}
