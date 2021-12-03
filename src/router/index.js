@@ -7,6 +7,7 @@ import Video from '@/views/Video'
 import Qa from '@/views/Qa'
 import Profile from '@/views/Profile'
 import Search from '@/views/Search'
+import Detail from '@/views/Detail'
 Vue.use(VueRouter)
 
 const routes = [
@@ -39,7 +40,14 @@ const routes = [
   {
     path: '/search',
     component: Search
+  },
+  {
+    path: '/detail/:artId',
+    name: 'detail',
+    component: Detail,
+    props: true
   }
+
 ]
 
 const router = new VueRouter({

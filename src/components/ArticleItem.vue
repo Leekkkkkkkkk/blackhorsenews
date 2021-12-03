@@ -1,6 +1,6 @@
 <template>
-  <div class="articleitem">
-    <van-cell :title="row.title" >
+  <div  class="articleitem">
+    <van-cell :to="'/detail/'+ row.art_id" :title="row.title" >
       <template>
         <van-image
           v-if="row.cover.type === 1"

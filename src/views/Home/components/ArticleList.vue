@@ -9,7 +9,7 @@
         error-text="请求失败，点击重新加载"
         @load="onLoad"
       >
-        <article-item :row='item' v-for="item in list" :key="item.art_id" :title="item.title"/>
+        <article-item :row='item' v-for="item in list" :key="item.art_id+''" :title="item.title"/>
       </van-list>
     </van-pull-refresh>
   </div>

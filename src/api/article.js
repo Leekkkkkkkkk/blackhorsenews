@@ -10,10 +10,24 @@ export function getArticle (params) {
     params
   })
 }
-
+/**
+ *获取频道
+ * @param {*} params
+ * @returns
+ */
 export function getChannels (params) {
   return request({
     url: '/v1_0/channels',
     params
+  })
+}
+/**
+ *获取文章详情
+ * @param {*} id {文章id}
+ *
+ */
+export function getArticleDetail (id) {
+  return request({
+    url: `/v1_0/articles/${id}`
   })
 }
