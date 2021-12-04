@@ -60,3 +60,38 @@ export function RemovehannelsItem (id) {
     method: 'DELETE'
   })
 }
+
+/**
+ *关注用户
+ * @param {*} target 关注用户的id
+ */
+export function followUser (target) {
+  return request({
+    url: '/v1_0/user/followings',
+    method: 'POST',
+    data: {
+      target: target
+    }
+  })
+}
+/**
+ *取消关注
+ * @param {*} target 取消关注用户的id
+ */
+export function deleteFollow (target) {
+  return request({
+    url: '/v1_0/user/followings/' + target,
+    method: 'DELETE'
+  })
+}
+/**
+ *获取评论列表
+ * @param {*} params type source offset limit
+ * @returns
+ */
+export function getCommentList (params) {
+  return request({
+    url: '/v1_0/comments',
+    params
+  })
+}

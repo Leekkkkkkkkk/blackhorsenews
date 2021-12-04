@@ -31,3 +31,27 @@ export function getArticleDetail (id) {
     url: `/v1_0/articles/${id}`
   })
 }
+/**
+ *收藏文章
+ * @param {*} id 文章id
+ */
+export function addCollectArticle (target) {
+  return request({
+    url: '/v1_0/article/collections',
+    method: 'POST',
+    data: {
+      target
+    }
+  })
+}
+/**
+ *取消收藏
+ * @param {*} id 文章id
+ * @returns
+ */
+export function deleteCollectArticle (id) {
+  return request({
+    url: '/v1_0/article/collections/' + id,
+    method: 'DELETE'
+  })
+}

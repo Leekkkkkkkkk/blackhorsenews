@@ -35,25 +35,46 @@
           />
           <div slot="title" class="user-name">{{article.aut_name}}</div>
           <div slot="label" class="publish-date">{{article.pubdate}}</div>
-          <van-button
-            class="follow-btn"
-            type="info"
-            color="#3296fa"
-            round
-            size="small"
-            icon="plus"
-          >关注</van-button>
-          <!-- <van-button
-            class="follow-btn"
-            round
-            size="small"
-          >已关注</van-button> -->
+          <!-- <follow-user
+          :isFollow='article.is_followed'
+          @updateFollowed='article.is_followed=$event'
+          :autId='article.aut_id'
+          /> -->
+          <follow-user
+          v-model="article.is_followed"
+          :autId='article.aut_id'
+          />
         </van-cell>
         <!-- /用户信息 -->
 
         <!-- 文章内容 -->
         <div ref="content" class="article-content markdown-body" v-html="article.content"></div>
         <van-divider>正文结束</van-divider>
+        <coumment-list :source='this.artId' @onTotal='total = $event' />
+          <div class="article-bottom">
+            <van-button
+              class="comment-btn"
+              type="default"
+              round
+              size="small"
+              @click="isShowPostCoomentPopup =true"
+            >写评论</van-button>
+            <van-icon
+              name="comment-o"
+              :badge="total"
+              color="#777"
+            />
+            <collect-article
+            v-model="article.is_collected"
+            :artID='article.art_id'
+             />
+            <van-icon
+              color="#777"
+              name="good-job-o"
+            />
+            <van-icon name="share" color="#777777"></van-icon>
+          </div>
+    <!-- /底部区域 -->
       </div>
       <!-- /加载完成-文章详情 -->
 
@@ -74,29 +95,9 @@
     </div>
 
     <!-- 底部区域 -->
-    <div class="article-bottom">
-      <van-button
-        class="comment-btn"
-        type="default"
-        round
-        size="small"
-      >写评论</van-button>
-      <van-icon
-        name="comment-o"
-        info="123"
-        color="#777"
-      />
-      <van-icon
-        color="#777"
-        name="star-o"
-      />
-      <van-icon
-        color="#777"
-        name="good-job-o"
-      />
-      <van-icon name="share" color="#777777"></van-icon>
-    </div>
-    <!-- /底部区域 -->
+      <van-popup v-model="isShowPostCoomentPopup" position="bottom" :style="{ height: '30%' }" >
+      <comment-post />
+    </van-popup>
   </div>
 </template>
 
@@ -104,6 +105,10 @@
 import { getArticleDetail } from '@/api/article'
 import { ImagePreview } from 'vant'
 import './github-markdown.css'
+import FollowUser from '../../components/FollowUser.vue'
+import CollectArticle from '../../components/CollectArticle.vue'
+import CoummentList from './components/CoummentList.vue'
+import CommentPost from './components/CommentPost.vue'
 export default {
   props: {
     artId: {
@@ -112,12 +117,14 @@ export default {
     }
   },
   name: 'ArticleIndex',
-  components: {},
+  components: { FollowUser, CollectArticle, CoummentList, CommentPost },
   data () {
     return {
       article: [],
       isLoading: true,
-      is404: false
+      is404: false,
+      total: 0,
+      isShowPostCoomentPopup: false
     }
   },
   computed: {},
@@ -158,6 +165,7 @@ export default {
         }
       })
     }
+
   }
 }
 </script>
