@@ -50,7 +50,7 @@
         <!-- 文章内容 -->
         <div ref="content" class="article-content markdown-body" v-html="article.content"></div>
         <van-divider>正文结束</van-divider>
-        <coumment-list :source='this.artId' @onTotal='total = $event' />
+        <coumment-list @click-replay='onReplay' :source='this.artId' @onTotal='total = $event' :list='list' />
           <div class="article-bottom">
             <van-button
               class="comment-btn"
@@ -95,9 +95,12 @@
     </div>
 
     <!-- 底部区域 -->
-      <van-popup v-model="isShowPostCoomentPopup" position="bottom" :style="{ height: '30%' }" >
-      <comment-post />
-    </van-popup>
+      <van-popup v-model="isShowPostCoomentPopup" position="bottom" :style="{ height: '20%' }" >
+      <comment-post :target='artId' @on-success='onSuccess' />
+      </van-popup>
+      <van-popup v-model="isShowPostReplyCommentPopup" position="bottom" :style="{ height: '100%' }" >
+        <comment-replay v-if="isShowPostReplyCommentPopup" :comment='comment' @close='isShowPostReplyCommentPopup=false' />
+      </van-popup>
   </div>
 </template>
 
@@ -109,6 +112,7 @@ import FollowUser from '../../components/FollowUser.vue'
 import CollectArticle from '../../components/CollectArticle.vue'
 import CoummentList from './components/CoummentList.vue'
 import CommentPost from './components/CommentPost.vue'
+import CommentReplay from './components/CommentReplay.vue'
 export default {
   props: {
     artId: {
@@ -117,14 +121,17 @@ export default {
     }
   },
   name: 'ArticleIndex',
-  components: { FollowUser, CollectArticle, CoummentList, CommentPost },
+  components: { FollowUser, CollectArticle, CoummentList, CommentPost, CommentReplay },
   data () {
     return {
       article: [],
       isLoading: true,
       is404: false,
       total: 0,
-      isShowPostCoomentPopup: false
+      isShowPostCoomentPopup: false,
+      list: [],
+      isShowPostReplyCommentPopup: false,
+      comment: {}
     }
   },
   computed: {},
@@ -164,6 +171,14 @@ export default {
           })
         }
       })
+    },
+    onSuccess (e) {
+      this.isShowPostCoomentPopup = false
+      this.list.unshift(e)
+    },
+    onReplay (e) {
+      this.isShowPostReplyCommentPopup = true
+      this.comment = e
     }
 
   }

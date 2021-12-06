@@ -6,7 +6,7 @@
     @load="onLoad"
   >
     <!-- <van-cell v-for="item in list" :key="item.com_id + ''" :title="item.content" /> -->
-    <comment-item  v-for="item in list" :key="item.com_id + ''" :title="item.content" :CommentItem='item' />
+    <comment-item @click-replay="$emit('click-replay',$event)"  v-for="item in list" :key="item.com_id + ''" :title="item.content" :CommentItem='item' />
   </van-list>
 </template>
 
@@ -17,7 +17,6 @@ export default {
   components: { CommentItem },
   data () {
     return {
-      list: [],
       loading: false,
       finished: false,
       offset: null,
@@ -32,6 +31,10 @@ export default {
     source: {
       type: [String, Number, Object],
       required: true
+    },
+    list: {
+      type: Array,
+      default: () => []
     }
   },
 
@@ -55,7 +58,8 @@ export default {
         this.$emit('onTotal', total)
         this.list.push(...results)
         this.loading = false
-        if (!this.list.length) {
+        if (!results.length) {
+          console.log(123)
           this.finished = true
         } else {
           this.offset = lastId

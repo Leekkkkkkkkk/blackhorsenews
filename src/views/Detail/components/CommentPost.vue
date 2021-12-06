@@ -18,10 +18,21 @@
   </div>
 </template>
 <script>
+import { PostComment } from '@/api/article.js'
+import { Toast } from 'vant'
 export default {
   name: 'CommentPost',
   components: {},
-  props: {},
+  props: {
+    target: {
+      type: [Number, String, Object],
+      required: true
+    },
+    artId: {
+      type: [Number, String, Object],
+      required: null
+    }
+  },
   data () {
     return {
       value: ''
@@ -32,8 +43,26 @@ export default {
   created () {},
   mounted () {},
   methods: {
-    onPost () {
-      console.log('发布')
+    async onPost () {
+      Toast.loading({
+        message: '发布中....',
+        duration: 0,
+        forbidClick: true
+      })
+      try {
+        const res = await PostComment({
+          target: this.target,
+          content: this.value,
+          art_id: this.artId
+        })
+        console.log(res)
+        Toast.success('发布成功')
+        this.$emit('on-success', res.new_obj)
+        this.value = ''
+      } catch (error) {
+        console.dir(error)
+        Toast.fail('发布失败')
+      }
     }
   }
 }

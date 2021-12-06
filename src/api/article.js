@@ -55,3 +55,15 @@ export function deleteCollectArticle (id) {
     method: 'DELETE'
   })
 }
+/**
+ *
+ * @param {*} data {target:文章的id,content:评论内容,art_id:非必须}
+ * @returns
+ */
+export function PostComment (data) {
+  return request({
+    url: '/v1_0/comments',
+    method: 'POST',
+    data
+  })
+}
