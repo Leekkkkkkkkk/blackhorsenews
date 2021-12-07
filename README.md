@@ -16,5 +16,9 @@ axios
 
 vant
 
+cropperJs
+
+dayJS
+
 
 
