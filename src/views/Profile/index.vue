@@ -12,7 +12,7 @@
           <img src="https://img0.baidu.com/it/u=4046115836,3082470176&fm=253&fmt=auto&app=120&f=JPEG?w=440&h=440" alt="">
           <span>{{userInfo.name}}</span>
         </div>
-        <van-button type="default">编辑信息</van-button>
+        <van-button type="default" to="/user">编辑信息</van-button>
       </div>
       <div class="user_data">
         <div class="data_item">

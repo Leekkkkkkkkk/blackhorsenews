@@ -95,3 +95,37 @@ export function getCommentList (params) {
     params
   })
 }
+/**
+ *获取用户资料
+ * @returns
+ */
+export function getUserProfile () {
+  return request({
+    url: '/v1_0/user/profile'
+  })
+}
+
+/**
+ *
+ * @param {*} data {}更新用户需要的数据
+ * @returns
+ */
+export function updateUserProfile (data) {
+  return request({
+    url: '/v1_0/user/profile',
+    method: 'PATCH',
+    data
+  })
+}
+/**
+ *
+ * @param {} data form data
+ * @returns
+ */
+export function updateUserPhoto (data) {
+  return request({
+    url: '/v1_0/user/photo',
+    method: 'PATCH',
+    data
+  })
+}

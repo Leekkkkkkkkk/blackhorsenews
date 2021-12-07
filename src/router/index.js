@@ -8,6 +8,7 @@ import Qa from '@/views/Qa'
 import Profile from '@/views/Profile'
 import Search from '@/views/Search'
 import Detail from '@/views/Detail'
+import User from '@/views/User'
 Vue.use(VueRouter)
 
 const routes = [
@@ -40,6 +41,10 @@ const routes = [
   {
     path: '/search',
     component: Search
+  },
+  {
+    path: '/user',
+    component: User
   },
   {
     path: '/detail/:artId',
